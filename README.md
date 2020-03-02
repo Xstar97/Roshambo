@@ -1,2 +1,2 @@
 # Roshambo
- tictactoe game made in multiple languages
+ rock, paper, scissors game made in multiple languages
