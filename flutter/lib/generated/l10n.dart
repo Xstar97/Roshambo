@@ -154,6 +154,42 @@ class S {
       args: [count],
     );
   }
+
+  String get gameModeMulti {
+    return Intl.message(
+      'multi-player',
+      name: 'gameModeMulti',
+      desc: 'start a game online',
+      args: [],
+    );
+  }
+
+  String get gameModeLocal {
+    return Intl.message(
+      'Local: offline',
+      name: 'gameModeLocal',
+      desc: 'peer to peer game',
+      args: [],
+    );
+  }
+
+  String get gameActionExit {
+    return Intl.message(
+      'Exit Game',
+      name: 'gameActionExit',
+      desc: 'close game',
+      args: [],
+    );
+  }
+
+  String get gameActionNew {
+    return Intl.message(
+      'New Game',
+      name: 'gameActionNew',
+      desc: 'start new game',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

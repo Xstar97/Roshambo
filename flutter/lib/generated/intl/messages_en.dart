@@ -32,9 +32,13 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "currentGamePlayer" : m0,
+    "gameActionExit" : MessageLookupByLibrary.simpleMessage("Exit Game"),
+    "gameActionNew" : MessageLookupByLibrary.simpleMessage("New Game"),
     "gameChoicePaper" : MessageLookupByLibrary.simpleMessage("Paper"),
     "gameChoiceRock" : MessageLookupByLibrary.simpleMessage("Rock"),
     "gameChoiceScissors" : MessageLookupByLibrary.simpleMessage("Scissors"),
+    "gameModeLocal" : MessageLookupByLibrary.simpleMessage("Local: offline"),
+    "gameModeMulti" : MessageLookupByLibrary.simpleMessage("multi-player"),
     "gameOverActionRestart" : MessageLookupByLibrary.simpleMessage("Restart Game"),
     "gameOverMessageTie" : MessageLookupByLibrary.simpleMessage("players have tied!"),
     "gameOverTitle" : MessageLookupByLibrary.simpleMessage("Game Over!"),

@@ -94,5 +94,25 @@
     "placeholders": {
       "count": {}
     }
+  },
+  "gameModeMulti": "multi-player",
+  "@gameModeMulti": {
+    "description": "start a game online",
+    "type": "text"
+  },
+  "gameModeLocal": "Local: offline",
+  "@gameModeLocal": {
+    "description": "peer to peer game",
+    "type": "text"
+  },
+  "gameActionExit": "Exit Game",
+  "@gameActionExit": {
+    "description": "close game",
+    "type": "text"
+  },
+  "gameActionNew": "New Game",
+  "@gameActionNew": {
+    "description": "start new game",
+    "type": "text"
   }
 }
