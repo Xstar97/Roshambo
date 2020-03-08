@@ -54,8 +54,8 @@ flutter:
   uses-material-design: true
 
   assets:
-    - resources/choices/
-    - resources/icons/
+    - assets/choices/
+    - assets/icons/
 
 
 flutter_intl:

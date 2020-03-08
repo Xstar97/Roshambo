@@ -1,0 +1,11 @@
+{
+  "hosting": {
+  "site": "my-roshambo-game",
+    "public": "/",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
