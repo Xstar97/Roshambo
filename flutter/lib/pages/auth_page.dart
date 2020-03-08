@@ -84,7 +84,6 @@ class AuthPageState extends State<AuthPage> {
         body: SingleChildScrollView(
           child: Center(
             child: Container(
-              color: Colors.white,
               child: Padding(
                 padding: const EdgeInsets.all(36.0),
                 child: Column(

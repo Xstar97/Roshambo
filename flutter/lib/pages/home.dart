@@ -8,6 +8,7 @@ import 'package:roshambo/generated/l10n.dart';
 import 'package:roshambo/pages/auth_page.dart';
 import 'package:roshambo/pages/game_local.dart';
 import 'package:roshambo/pages/game_multi.dart';
+import 'package:roshambo/widgets/responsive_widget.dart';
 
 bool isMobile = false;
 
@@ -32,70 +33,91 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
 
-    Widget _image(String name){
-      return Image(image: AssetImage(name), width: 100, height: 100,);
+    Widget _image(String name, double size){
+      return Image(image: AssetImage(name), width: size, height: size,);
     }
-    Widget _icon(String name){
-      return Image(image: AssetImage(name), width: 48, height: 48,);
+    Widget _icon(String name, double size){
+      return Image(image: AssetImage(name), width: size, height: size,);
     }
 
-    Widget mobileAction = Column(
-      children: <Widget>[
-        RaisedButton(child: Text(S.of(context).gameActionExit), onPressed: ()=> SystemChannels.platform.invokeMethod('SystemNavigator.pop'),)
-      ],
-    );
-    Widget webAction = Column(
-      children: <Widget>[
-        Padding(padding: EdgeInsets.all(4.0),),
-        RaisedButton(child: _icon(Assets.storeGoogle), onPressed: null,),
-        Padding(padding: EdgeInsets.all(4.0),),
-        RaisedButton(child: _icon(Assets.storeApple), onPressed: null,)
-      ],
-    );
-
-    Widget buttonActions = Padding(
-      padding: EdgeInsets.all(15.0),
-      child: Column(
+    Widget mobileAction(double fontSize) {
+      return Column(
         children: <Widget>[
-          RaisedButton(child: Text(S.of(context).gameModeMulti), onPressed: ()=> Utils().newPage(context, AuthPage()),),
-          RaisedButton(child: Text(S.of(context).gameModeLocal), onPressed: ()=> Utils().newPage(context, GamePageLocal()),),
-          isMobile ? mobileAction :  webAction,
+          RaisedButton(child: Text(S.of(context).gameActionExit, style: TextStyle(fontSize: fontSize)),
+            onPressed: () =>
+                SystemChannels.platform.invokeMethod('SystemNavigator.pop'),)
         ],
-      ),
-    );
+      );
+    }
+    Widget webAction(double iconSize) {
+      return Column(
+        children: <Widget>[
+          Padding(padding: EdgeInsets.all(4.0),),
+          RaisedButton(child: Row(children: <Widget>[
+            _icon(Assets.storeGoogle, iconSize),
+            _icon(Assets.storeApple, iconSize)
+          ],), onPressed: null,),
+        ],
+      );
+    }
+    Widget buttonActions(double iconSize, double fontSize) {
+        return Padding(
+          padding: EdgeInsets.all(15.0),
+          child: Column(
+            children: <Widget>[
+              RaisedButton(child: Text(S.of(context).gameModeMulti, style: TextStyle(fontSize: fontSize),),
+                onPressed: () => Utils().newPage(context, AuthPage()),),
+              RaisedButton(child: Text(S
+                  .of(context)
+                  .gameModeLocal, style: TextStyle(fontSize: fontSize)),
+                onPressed: () => Utils().newPage(context, GamePageLocal()),),
+              isMobile ? mobileAction(fontSize) : webAction(iconSize),
+            ],
+          ),
+        );
+      }
 
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Center(child: Text(S.of(context).title, textAlign: TextAlign.center,),),
-      ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Container(
-            color: Colors.white,
-            child: Padding(
-              padding: const EdgeInsets.all(36.0),
-              child: Center(child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  _image(Assets.choicePaper),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      _image(Assets.choiceRock),
-                      buttonActions,
-                      _image(Assets.choiceScissors),
-                    ],
-                  ),
-                  _image(Assets.choiceHands),
-                ],
-              ),),
+    Widget homeView(double imageSize, double iconSize, double fontSize){
+        return Scaffold(
+          appBar: AppBar(
+            // Here we take the value from the MyHomePage object that was created by
+            // the App.build method, and use it to set our appbar title.
+            title: Center(child: Text(S.of(context).title, textAlign: TextAlign.center,),),
+          ),
+          body: SingleChildScrollView(
+            child: Center(
+              child: Container(
+                child: Padding(
+                  padding: const EdgeInsets.all(36.0),
+                  child: Center(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        _image(Assets.choicePaper, imageSize),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            _image(Assets.choiceRock, imageSize),
+                            buttonActions(iconSize, fontSize),
+                            _image(Assets.choiceScissors, imageSize),
+                          ],
+                        ),
+                        _image(Assets.choiceHands, imageSize),
+                      ],
+                    ),),
+                ),
+              ),
             ),
           ),
-        ),
-      ),
-    );
+        );
+      }
+
+      return ResponsiveWidget(
+        //largestScreen: homeView(200, 120, 40),
+        largeScreen: homeView(150, 48, 48),
+        mediumScreen: homeView(100, 36, 32),
+        smallScreen: homeView(48, 24, 12),
+      );
   }
 }
