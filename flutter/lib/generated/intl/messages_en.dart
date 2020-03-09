@@ -31,23 +31,29 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
+    "authAccountSignIn" : MessageLookupByLibrary.simpleMessage("Have an Account? Sign in"),
+    "authAccountSignUp" : MessageLookupByLibrary.simpleMessage("create an account? Sign up"),
+    "authHintEmail" : MessageLookupByLibrary.simpleMessage("Email"),
+    "authHintPassword" : MessageLookupByLibrary.simpleMessage("Password"),
+    "authSignIn" : MessageLookupByLibrary.simpleMessage("Sign In"),
+    "authSignUp" : MessageLookupByLibrary.simpleMessage("Sign Up"),
     "currentGamePlayer" : m0,
+    "gameActionCancel" : MessageLookupByLibrary.simpleMessage("Cancel"),
     "gameActionExit" : MessageLookupByLibrary.simpleMessage("Exit Game"),
     "gameActionNew" : MessageLookupByLibrary.simpleMessage("New Game"),
+    "gameActionRestart" : MessageLookupByLibrary.simpleMessage("Restart Game"),
     "gameChoicePaper" : MessageLookupByLibrary.simpleMessage("Paper"),
     "gameChoiceRock" : MessageLookupByLibrary.simpleMessage("Rock"),
     "gameChoiceScissors" : MessageLookupByLibrary.simpleMessage("Scissors"),
-    "gameModeLocal" : MessageLookupByLibrary.simpleMessage("Local: offline"),
-    "gameModeMulti" : MessageLookupByLibrary.simpleMessage("multi-player"),
-    "gameOverActionRestart" : MessageLookupByLibrary.simpleMessage("Restart Game"),
+    "gameMessageWaiting" : MessageLookupByLibrary.simpleMessage("waiting for other player...."),
+    "gameModeOffline" : MessageLookupByLibrary.simpleMessage("Offline"),
+    "gameModeOnline" : MessageLookupByLibrary.simpleMessage("Online"),
     "gameOverMessageTie" : MessageLookupByLibrary.simpleMessage("players have tied!"),
     "gameOverTitle" : MessageLookupByLibrary.simpleMessage("Game Over!"),
     "gamePlayerSelected" : m1,
     "gamePlayerWon" : m2,
     "leaderBoardPlayer" : m3,
     "leaderBoardPlayerTie" : m4,
-    "playerNameOne" : MessageLookupByLibrary.simpleMessage("One"),
-    "playerNameTwo" : MessageLookupByLibrary.simpleMessage("Two"),
     "title" : MessageLookupByLibrary.simpleMessage("RoShamBo")
   };
 }

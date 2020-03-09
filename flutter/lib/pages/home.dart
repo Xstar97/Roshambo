@@ -6,8 +6,8 @@ import 'package:roshambo/config/assets.dart';
 import 'package:roshambo/config/auth_repository.dart';
 import 'package:roshambo/generated/l10n.dart';
 import 'package:roshambo/pages/auth_page.dart';
-import 'package:roshambo/pages/game_local.dart';
-import 'package:roshambo/pages/game_multi.dart';
+import 'package:roshambo/pages/game_offline.dart';
+import 'package:roshambo/pages/game_online.dart';
 import 'package:roshambo/widgets/responsive_widget.dart';
 
 bool isMobile = false;
@@ -65,12 +65,11 @@ class _HomePageState extends State<HomePage> {
           padding: EdgeInsets.all(15.0),
           child: Column(
             children: <Widget>[
-              RaisedButton(child: Text(S.of(context).gameModeMulti, style: TextStyle(fontSize: fontSize),),
+              RaisedButton(child: Text(S.of(context).gameModeOnline, style: TextStyle(fontSize: fontSize),),
                 onPressed: () => Utils().newPage(context, AuthPage()),),
-              RaisedButton(child: Text(S
-                  .of(context)
-                  .gameModeLocal, style: TextStyle(fontSize: fontSize)),
-                onPressed: () => Utils().newPage(context, GamePageLocal()),),
+              Padding(padding: EdgeInsets.all(5),),
+              RaisedButton(child: Text(S.of(context).gameModeOffline, style: TextStyle(fontSize: fontSize)),
+                onPressed: () => Utils().newPage(context, GamePageOffline()),),
               isMobile ? mobileAction(fontSize) : webAction(iconSize),
             ],
           ),

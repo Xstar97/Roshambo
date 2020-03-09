@@ -63,8 +63,36 @@ class _BaseGamePageState extends State<BaseGamePage> {
       return winner;
     }
 
+
+  void onMultiCancel(){
+    Navigator.of(context).pop();
+  }
+  void dialogServerValidation(){
+    showDialog<void>(
+      barrierDismissible: false,
+      context: context, // user must tap button!
+      builder: (BuildContext alert) {
+        return AlertDialog(
+          title: Center(child: Text(S.of(context).gameMessageWaiting),),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text(S.of(context).gamePlayerSelected(widget.playerNameOne,
+                  gameChoicesToString(context, playerValueOne))),
+              Text(S.of(context).gamePlayerSelected(widget.playerNameTwo,
+                  gameChoicesToString(context, playerValueTwo))),
+              RaisedButton(child: Text(S.of(context).gameActionCancel, textAlign: TextAlign.center,), onPressed: onMultiCancel
+                ,)
+
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   void onItemSelected(GameChoices value) async {
-      if (widget.mode == GameMode.Local) {
+      if (widget.mode == GameMode.Offline) {
         setState(() {//local
           if (currentPlayerName == widget.playerNameOne) {
             playerValueOne = value;
@@ -82,36 +110,11 @@ class _BaseGamePageState extends State<BaseGamePage> {
           }
         });
       } else{//server
-        if (currentPlayerName == widget.playerNameOne) {
-          playerValueOne = value;
-        } else {
-          playerValueTwo = value;
-        }
+        //TODO add user validation
         dialogServerValidation();
       }
 
     }
-
-  void dialogServerValidation(){
-    showDialog<void>(
-      barrierDismissible: false,
-      context: context, // user must tap button!
-      builder: (BuildContext alert) {
-        return AlertDialog(
-          title: Center(child: Text("waiting for other player...."),),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Text(S.of(context).gamePlayerSelected(widget.playerNameOne,
-                  gameChoicesToString(context, playerValueOne))),
-              Text(S.of(context).gamePlayerSelected(widget.playerNameTwo,
-                  gameChoicesToString(context, playerValueTwo))),
-            ],
-          ),
-        );
-      },
-    );
-  }
 
   void dialogGameOverMessage(String name, int winner) {
       bool isWinner = winner != 0;
@@ -151,20 +154,23 @@ class _BaseGamePageState extends State<BaseGamePage> {
   Widget build(BuildContext context) {
 
     Widget leaderBoardView() {
-      return Column(
-        children: <Widget>[
-          Text(S.of(context).leaderBoardPlayer(
-              widget.playerNameOne, leaderBoardCountPlayerOne)),
-          Text(S.of(context).leaderBoardPlayer(
-              widget.playerNameTwo, leaderBoardCountPlayerTwo)),
-          Text(S.of(context).leaderBoardPlayerTie(leaderBoardCountPlayerTie)),
-        ],
+      return Visibility(
+        visible: widget.mode == GameMode.Online ? false : true,
+        child: Column(
+          children: <Widget>[
+            Text(S.of(context).leaderBoardPlayer(
+                widget.playerNameOne, leaderBoardCountPlayerOne)),
+            Text(S.of(context).leaderBoardPlayer(
+                widget.playerNameTwo, leaderBoardCountPlayerTwo)),
+            Text(S.of(context).leaderBoardPlayerTie(leaderBoardCountPlayerTie)),
+          ],
+        ),
       );
     }
 
     Widget gridViewSelection = Container(
       width: 400,
-      height: 400,
+      height: 150,
       child: GridView.count(
         crossAxisSpacing: 1,
         mainAxisSpacing: 1,
@@ -192,6 +198,7 @@ class _BaseGamePageState extends State<BaseGamePage> {
           child: Padding(
             padding: const EdgeInsets.all(36.0),
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[

@@ -38,24 +38,6 @@ class S {
     );
   }
 
-  String get playerNameOne {
-    return Intl.message(
-      'One',
-      name: 'playerNameOne',
-      desc: 'player name',
-      args: [],
-    );
-  }
-
-  String get playerNameTwo {
-    return Intl.message(
-      'Two',
-      name: 'playerNameTwo',
-      desc: 'player name',
-      args: [],
-    );
-  }
-
   String get gameChoiceRock {
     return Intl.message(
       'Rock',
@@ -101,11 +83,38 @@ class S {
     );
   }
 
-  String get gameOverActionRestart {
+  String get gameActionRestart {
     return Intl.message(
       'Restart Game',
-      name: 'gameOverActionRestart',
+      name: 'gameActionRestart',
       desc: 'game will restart',
+      args: [],
+    );
+  }
+
+  String get gameActionExit {
+    return Intl.message(
+      'Exit Game',
+      name: 'gameActionExit',
+      desc: 'close game',
+      args: [],
+    );
+  }
+
+  String get gameActionCancel {
+    return Intl.message(
+      'Cancel',
+      name: 'gameActionCancel',
+      desc: 'Cancel',
+      args: [],
+    );
+  }
+
+  String get gameActionNew {
+    return Intl.message(
+      'New Game',
+      name: 'gameActionNew',
+      desc: 'start new game',
       args: [],
     );
   }
@@ -155,38 +164,83 @@ class S {
     );
   }
 
-  String get gameModeMulti {
+  String get gameModeOnline {
     return Intl.message(
-      'multi-player',
-      name: 'gameModeMulti',
+      'Online',
+      name: 'gameModeOnline',
       desc: 'start a game online',
       args: [],
     );
   }
 
-  String get gameModeLocal {
+  String get gameModeOffline {
     return Intl.message(
-      'Local: offline',
-      name: 'gameModeLocal',
+      'Offline',
+      name: 'gameModeOffline',
       desc: 'peer to peer game',
       args: [],
     );
   }
 
-  String get gameActionExit {
+  String get authAccountSignUp {
     return Intl.message(
-      'Exit Game',
-      name: 'gameActionExit',
-      desc: 'close game',
+      'create an account? Sign up',
+      name: 'authAccountSignUp',
+      desc: 'create a new account',
       args: [],
     );
   }
 
-  String get gameActionNew {
+  String get authAccountSignIn {
     return Intl.message(
-      'New Game',
-      name: 'gameActionNew',
-      desc: 'start new game',
+      'Have an Account? Sign in',
+      name: 'authAccountSignIn',
+      desc: 'sign in with an account',
+      args: [],
+    );
+  }
+
+  String get authSignIn {
+    return Intl.message(
+      'Sign In',
+      name: 'authSignIn',
+      desc: 'Sign in',
+      args: [],
+    );
+  }
+
+  String get authSignUp {
+    return Intl.message(
+      'Sign Up',
+      name: 'authSignUp',
+      desc: 'Sign Up',
+      args: [],
+    );
+  }
+
+  String get authHintEmail {
+    return Intl.message(
+      'Email',
+      name: 'authHintEmail',
+      desc: 'email address',
+      args: [],
+    );
+  }
+
+  String get authHintPassword {
+    return Intl.message(
+      'Password',
+      name: 'authHintPassword',
+      desc: 'password',
+      args: [],
+    );
+  }
+
+  String get gameMessageWaiting {
+    return Intl.message(
+      'waiting for other player....',
+      name: 'gameMessageWaiting',
+      desc: 'player is waiting for another',
       args: [],
     );
   }

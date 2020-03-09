@@ -5,18 +5,6 @@
     "type": "text",
     "placeholders": {}
   },
-  "playerNameOne": "One",
-  "@playerNameOne": {
-    "description": "player name",
-    "type": "text",
-    "placeholders": {}
-  },
-  "playerNameTwo": "Two",
-  "@playerNameTwo": {
-    "description": "player name",
-    "type": "text",
-    "placeholders": {}
-  },
   "gameChoiceRock": "Rock",
   "@gameChoiceRock": {
     "description": "game choice; stone",
@@ -47,11 +35,26 @@
     "type": "text",
     "placeholders": {}
   },
-  "gameOverActionRestart": "Restart Game",
-  "@gameOverActionRestart": {
+  "gameActionRestart": "Restart Game",
+  "@gameActionRestart": {
     "description": "game will restart",
     "type": "text",
     "placeholders": {}
+  },
+  "gameActionExit": "Exit Game",
+  "@gameActionExit": {
+    "description": "close game",
+    "type": "text"
+  },
+  "gameActionCancel": "Cancel",
+  "@gameActionCancel": {
+    "description": "Cancel",
+    "type": "text"
+  },
+  "gameActionNew": "New Game",
+  "@gameActionNew": {
+    "description": "start new game",
+    "type": "text"
   },
   "gamePlayerSelected": "player {name} had selected {choice}",
   "@gamePlayerSelected": {
@@ -95,24 +98,49 @@
       "count": {}
     }
   },
-  "gameModeMulti": "multi-player",
-  "@gameModeMulti": {
+  "gameModeOnline": "Online",
+  "@gameModeOnline": {
     "description": "start a game online",
     "type": "text"
   },
-  "gameModeLocal": "Local: offline",
-  "@gameModeLocal": {
+  "gameModeOffline": "Offline",
+  "@gameModeOffline": {
     "description": "peer to peer game",
     "type": "text"
   },
-  "gameActionExit": "Exit Game",
-  "@gameActionExit": {
-    "description": "close game",
+  "authAccountSignUp": "create an account? Sign up",
+  "@authAccountSignUp": {
+    "description": "create a new account",
     "type": "text"
   },
-  "gameActionNew": "New Game",
-  "@gameActionNew": {
-    "description": "start new game",
+  "authAccountSignIn": "Have an Account? Sign in",
+  "@authAccountSignIn": {
+    "description": "sign in with an account",
+    "type": "text"
+  },
+  "authSignIn": "Sign In",
+  "@authSignIn": {
+    "description": "Sign in",
+    "type": "text"
+  },
+  "authSignUp": "Sign Up",
+  "@authSignUp": {
+    "description": "Sign Up",
+    "type": "text"
+  },
+  "authHintEmail": "Email",
+  "@authHintEmail": {
+    "description": "email address",
+    "type": "text"
+  },
+  "authHintPassword": "Password",
+  "@authHintPassword": {
+    "description": "password",
+    "type": "text"
+  },
+  "gameMessageWaiting": "waiting for other player....",
+  "@gameMessageWaiting": {
+    "description": "player is waiting for another",
     "type": "text"
   }
 }

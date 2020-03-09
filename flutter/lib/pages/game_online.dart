@@ -3,22 +3,27 @@ import 'package:roshambo/config/constants.dart';
 import 'package:roshambo/generated/l10n.dart';
 import 'package:roshambo/pages/base_game.dart';
 
-class GamePageMulti extends StatefulWidget {
+class GamePageOnline extends StatefulWidget {
 
   @override
-  _GamePageMultiState createState() => _GamePageMultiState();
+  _GamePageOnlineState createState() => _GamePageOnlineState();
 }
-class _GamePageMultiState extends State<GamePageMulti> {
+class _GamePageOnlineState extends State<GamePageOnline> {
 
   var title, playerNameOne, playerNameTwo;
   var mode;
 
   @override
+  void initState() {
+    mode = GameMode.Online;
+    playerNameOne = "1";
+    playerNameTwo = "2";
+    super.initState();
+  }
+
+  @override
   void didChangeDependencies() {
-    title = S.of(context).gameModeMulti;
-    mode = GameMode.Multi;
-    playerNameOne = S.of(context).playerNameOne;
-    playerNameTwo = S.of(context).playerNameTwo;
+    title = S.of(context).gameModeOnline;
     super.didChangeDependencies();
   }
 

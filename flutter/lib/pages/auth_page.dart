@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:roshambo/config/Utils.dart';
 import 'package:roshambo/config/assets.dart';
-import 'package:roshambo/config/auth_delegate.dart';
 import 'package:roshambo/config/constants.dart';
 import 'package:roshambo/generated/l10n.dart';
-import 'package:roshambo/pages/game_local.dart';
-import 'package:roshambo/pages/game_multi.dart';
+import 'package:roshambo/pages/game_online.dart';
 import 'package:roshambo/widgets/responsive_widget.dart';
 
 class AuthPage extends StatefulWidget{
@@ -35,7 +33,7 @@ class AuthPageState extends State<AuthPage> {
     style: style,
     decoration: InputDecoration(
         contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        hintText: "Email",
+        hintText: S.of(context).authHintEmail,
         border:
         OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
   );
@@ -45,12 +43,12 @@ class AuthPageState extends State<AuthPage> {
     style: style,
     decoration: InputDecoration(
         contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        hintText: "Password",
+        hintText: S.of(context).authHintPassword,
         border:
         OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
   );
 
-  final loginButon = Material(
+  final signInButton = Material(
     elevation: 5.0,
     borderRadius: BorderRadius.circular(30.0),
     color: Color(0xff01A0C7),
@@ -60,12 +58,12 @@ class AuthPageState extends State<AuthPage> {
       onPressed: () {
         if(mode == FormMode.AUTH_LOGIN){
           Navigator.of(context).pop();
-          Utils().newPage(context, GamePageMulti());
+          Utils().newPage(context, GamePageOnline());
         } else{
 
         }
       },
-      child: Text(mode == FormMode.AUTH_LOGIN ? "Login" : "Sign up",
+      child: Text(mode == FormMode.AUTH_LOGIN ? S.of(context).authSignIn : S.of(context).authSignUp,
           textAlign: TextAlign.center,
           style: style.copyWith(color: Colors.white, fontWeight: FontWeight.bold)),
     ),
@@ -74,7 +72,7 @@ class AuthPageState extends State<AuthPage> {
   Widget signUpOrIn(double fontSize){
   return InkWell(
   onTap: ()=> signUpOrInState(),
-  child: Text(mode == FormMode.AUTH_LOGIN ? "create an account? Sign up" : "Have an Account? sign in", style: TextStyle(fontSize: fontSize),),
+  child: Text(mode == FormMode.AUTH_LOGIN ? S.of(context).authAccountSignUp : S.of(context).authAccountSignIn, style: TextStyle(fontSize: fontSize),),
   );
   }
 
@@ -110,7 +108,7 @@ class AuthPageState extends State<AuthPage> {
                     SizedBox(
                       height: 35.0,
                     ),
-                    loginButon,
+                    signInButton,
                     SizedBox(
                       height: 15.0,
                     ),

@@ -47,8 +47,8 @@ Widget _image(String name){
 }
 
 enum GameMode{
-  Local,
-  Multi
+  Online,
+  Offline
 }
 enum FormMode {
   AUTH_LOGIN,

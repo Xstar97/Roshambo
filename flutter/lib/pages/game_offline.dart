@@ -3,22 +3,27 @@ import 'package:roshambo/config/constants.dart';
 import 'package:roshambo/generated/l10n.dart';
 import 'package:roshambo/pages/base_game.dart';
 
-class GamePageLocal extends StatefulWidget {
+class GamePageOffline extends StatefulWidget {
 
   @override
-  _GamePageLocalState createState() => _GamePageLocalState();
+  _GamePageOfflineState createState() => _GamePageOfflineState();
 }
-class _GamePageLocalState extends State<GamePageLocal> {
+class _GamePageOfflineState extends State<GamePageOffline> {
 
   var title, playerNameOne, playerNameTwo;
   var mode;
 
   @override
+  void initState() {
+    mode = GameMode.Offline;
+    playerNameOne = "1";
+    playerNameTwo = "2";
+    super.initState();
+  }
+
+  @override
   void didChangeDependencies() {
-    title = S.of(context).gameModeLocal;
-    mode = GameMode.Local;
-    playerNameOne = S.of(context).playerNameOne;
-    playerNameTwo = S.of(context).playerNameTwo;
+    title = S.of(context).gameModeOffline;
     super.didChangeDependencies();
   }
 
