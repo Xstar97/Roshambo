@@ -43,7 +43,7 @@ gameChoicesToImages(BuildContext context, GameChoices choices){
 }
 
 Widget _image(String name){
-  return Image(image: AssetImage(name), width: 100, height: 100,);
+  return Image(image: AssetImage(name), width: 125, height: 125,);
 }
 
 enum GameMode{

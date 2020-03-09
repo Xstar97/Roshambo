@@ -114,10 +114,11 @@ class _HomePageState extends State<HomePage> {
       }
 
       return ResponsiveWidget(
-        //largestScreen: homeView(200, 120, 40),
-        largeScreen: homeView(150, 48, 48),
-        mediumScreen: homeView(100, 36, 32),
-        smallScreen: homeView(48, 24, 12),
+        largestScreen: homeView(200, 96, 48),
+        largeScreen: homeView(150, 72, 40),
+        mediumScreen: homeView(100, 48, 32),
+        smallScreen: homeView(50, 36, 14),
+        smallestScreen: homeView(25, 24, 12),
       );
   }
 }

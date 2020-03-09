@@ -6,6 +6,7 @@ import 'package:roshambo/config/constants.dart';
 import 'package:roshambo/generated/l10n.dart';
 import 'package:roshambo/pages/game_local.dart';
 import 'package:roshambo/pages/game_multi.dart';
+import 'package:roshambo/widgets/responsive_widget.dart';
 
 class AuthPage extends StatefulWidget{
   //final AuthDelegate auth;
@@ -70,17 +71,22 @@ class AuthPageState extends State<AuthPage> {
     ),
   );
 
-  final signUpOrIn = InkWell(
-    onTap: ()=> signUpOrInState(),
-    child: Text(mode == FormMode.AUTH_LOGIN ? "create an account? Sign up" : "Have an Account? sign in"),
+  Widget signUpOrIn(double fontSize){
+  return InkWell(
+  onTap: ()=> signUpOrInState(),
+  child: Text(mode == FormMode.AUTH_LOGIN ? "create an account? Sign up" : "Have an Account? sign in", style: TextStyle(fontSize: fontSize),),
   );
+  }
 
-  return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Center(child: Text(S.of(context).title, textAlign: TextAlign.center,),),
-      ),
+  Widget authView(double iconSizeBox, double fontSize) {
+    return Scaffold(
+        appBar: AppBar(
+          // Here we take the value from the MyHomePage object that was created by
+          // the App.build method, and use it to set our appbar title.
+          title: Center(child: Text(S
+              .of(context)
+              .title, textAlign: TextAlign.center,),),
+        ),
         body: SingleChildScrollView(
           child: Center(
             child: Container(
@@ -91,7 +97,7 @@ class AuthPageState extends State<AuthPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     SizedBox(
-                      height: 155.0,
+                      height: iconSizeBox,
                       child: Image.asset(
                         Assets.choiceHands,
                         fit: BoxFit.contain,
@@ -108,7 +114,7 @@ class AuthPageState extends State<AuthPage> {
                     SizedBox(
                       height: 15.0,
                     ),
-                    signUpOrIn
+                    signUpOrIn(fontSize)
                   ],
                 ),
               ),
@@ -116,6 +122,14 @@ class AuthPageState extends State<AuthPage> {
           ),
         )
     );
-
+  }
+  //iconSizeBox = 155
+    return ResponsiveWidget(
+      largestScreen: authView(210, 36),
+      largeScreen: authView(155, 24,),
+      mediumScreen: authView(100, 20,),
+      smallScreen: authView(75, 16,),
+      smallestScreen: authView(50, 12),
+    );
   }
 }

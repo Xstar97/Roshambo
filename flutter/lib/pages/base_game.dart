@@ -82,22 +82,36 @@ class _BaseGamePageState extends State<BaseGamePage> {
           }
         });
       } else{//server
-        setState(() {
-          if (currentPlayerName == widget.playerNameOne) {
-            playerValueOne = value;
-          } else {
-            playerValueTwo = value;
-          }
-          if (validateWinner(
-              context, widget.playerNameOne, playerValueOne, playerValueTwo) !=
-              0) {
-            validateWinner(
-                context, widget.playerNameTwo, playerValueTwo, playerValueOne);
-          }
-        });
+        if (currentPlayerName == widget.playerNameOne) {
+          playerValueOne = value;
+        } else {
+          playerValueTwo = value;
+        }
+        dialogServerValidation();
       }
 
     }
+
+  void dialogServerValidation(){
+    showDialog<void>(
+      barrierDismissible: false,
+      context: context, // user must tap button!
+      builder: (BuildContext alert) {
+        return AlertDialog(
+          title: Center(child: Text("waiting for other player...."),),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text(S.of(context).gamePlayerSelected(widget.playerNameOne,
+                  gameChoicesToString(context, playerValueOne))),
+              Text(S.of(context).gamePlayerSelected(widget.playerNameTwo,
+                  gameChoicesToString(context, playerValueTwo))),
+            ],
+          ),
+        );
+      },
+    );
+  }
 
   void dialogGameOverMessage(String name, int winner) {
       bool isWinner = winner != 0;
@@ -172,24 +186,9 @@ class _BaseGamePageState extends State<BaseGamePage> {
         }).toList(), // Convert the map to a list of widgets
       ),);
 
-    /*
-    Widget gameView() {
-      return Container(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            leaderBoardView(),
-            Text(S.of(context).currentGamePlayer(currentPlayerName),
-              style: TextStyle(fontSize: 25),),
-            gridViewSelection,
-          ],
-        ),);
-    }*/
-
     Widget gameView = SingleChildScrollView(
       child: Center(
         child: Container(
-          color: Colors.white,
           child: Padding(
             padding: const EdgeInsets.all(36.0),
             child: Column(
