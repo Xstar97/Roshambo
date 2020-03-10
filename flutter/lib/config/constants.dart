@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:roshambo/config/Utils.dart';
 import 'package:roshambo/config/assets.dart';
 import 'package:roshambo/generated/l10n.dart';
 
@@ -32,18 +33,18 @@ gameChoicesToString(BuildContext context, GameChoices choices){
 gameChoicesToImages(BuildContext context, GameChoices choices){
   switch (choices) {
     case GameChoices.Rock:
-      return _image(Assets.choiceRock);
+      return _choiceImage(Assets.choiceRock);
     case GameChoices.Paper:
-      return _image(Assets.choicePaper);
+      return _choiceImage(Assets.choicePaper);
     case GameChoices.Scissors:
-      return _image(Assets.choiceScissors);
+      return _choiceImage(Assets.choiceScissors);
     default:
-      return _image(Assets.choiceHands);
+      return _choiceImage(Assets.choiceHands);
   }
 }
 
-Widget _image(String name){
-  return Image(image: AssetImage(name), width: 125, height: 125,);
+Widget _choiceImage(String name){
+  return Utils().assetImage(name, 125);
 }
 
 enum GameMode{
