@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:roshambo/config/Utils.dart';
 import 'package:roshambo/config/assets.dart';
+import 'package:roshambo/config/auth_repository.dart';
 import 'package:roshambo/config/constants.dart';
 import 'package:roshambo/generated/l10n.dart';
 import 'package:roshambo/pages/game_online.dart';
 import 'package:roshambo/widgets/responsive_widget.dart';
+
+var auth = Auth();
 
 class AuthPage extends StatefulWidget{
   //final AuthDelegate auth;
@@ -16,6 +19,10 @@ class AuthPageState extends State<AuthPage> {
   var mode = FormMode.AUTH_LOGIN;
   TextStyle style = TextStyle(fontSize: 20.0);
 
+  void startGameOnline(){
+    Navigator.of(context).pop();
+    Utils().newPage(context, GamePageOnline());
+  }
   void signUpOrInState(){
     setState(() {
       if(mode == FormMode.AUTH_LOGIN)
@@ -26,10 +33,17 @@ class AuthPageState extends State<AuthPage> {
   }
 
   @override
+  void initState() {
+    if(auth.getCurrentUser() != null){
+      //startGameOnline();
+    }
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context)
   {
   final emailField = TextField(
-    obscureText: true,
     style: style,
     decoration: InputDecoration(
         contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
@@ -57,10 +71,9 @@ class AuthPageState extends State<AuthPage> {
       padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
       onPressed: () {
         if(mode == FormMode.AUTH_LOGIN){
-          Navigator.of(context).pop();
-          Utils().newPage(context, GamePageOnline());
+          auth.signInEmail(emailField.controller.text, passwordField.controller.text);
         } else{
-
+          auth.signUpEmail(emailField.controller.text, passwordField.controller.text);
         }
       },
       child: Text(mode == FormMode.AUTH_LOGIN ? S.of(context).authSignIn : S.of(context).authSignUp,
