@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:roshambo/config/Utils.dart';
 import 'package:roshambo/config/constants.dart';
 import 'package:roshambo/generated/l10n.dart';
 
@@ -9,6 +10,8 @@ var currentPlayerName;
 var leaderBoardCountPlayerOne = 0;
 var leaderBoardCountPlayerTwo = 0;
 var leaderBoardCountPlayerTie = 0;
+
+var utils = Utils();
 
 class BaseGamePage extends StatefulWidget {
   final String title, playerNameOne, playerNameTwo;
@@ -63,11 +66,11 @@ class _BaseGamePageState extends State<BaseGamePage> {
       return winner;
     }
 
-
   void onMultiCancel(){
     Navigator.of(context).pop();
   }
-  void dialogServerValidation(){
+
+  void _onItemSelectedOnline(GameChoices value){
     showDialog<void>(
       barrierDismissible: false,
       context: context, // user must tap button!
@@ -91,27 +94,30 @@ class _BaseGamePageState extends State<BaseGamePage> {
     );
   }
 
+  void _onItemSelectedOffline(GameChoices value){
+    setState(() {//local
+      if (currentPlayerName == widget.playerNameOne) {
+        playerValueOne = value;
+      } else {
+        playerValueTwo = value;
+      }
+      currentPlayerName = currentPlayerName == widget.playerNameOne
+          ? widget.playerNameTwo
+          : widget.playerNameOne;
+      if (validateWinner(
+          context, widget.playerNameOne, playerValueOne, playerValueTwo) !=
+          0) {
+        validateWinner(
+            context, widget.playerNameTwo, playerValueTwo, playerValueOne);
+      }
+    });
+  }
+
   void onItemSelected(GameChoices value) async {
       if (widget.mode == GameMode.Offline) {
-        setState(() {//local
-          if (currentPlayerName == widget.playerNameOne) {
-            playerValueOne = value;
-          } else {
-            playerValueTwo = value;
-          }
-          currentPlayerName = currentPlayerName == widget.playerNameOne
-              ? widget.playerNameTwo
-              : widget.playerNameOne;
-          if (validateWinner(
-              context, widget.playerNameOne, playerValueOne, playerValueTwo) !=
-              0) {
-            validateWinner(
-                context, widget.playerNameTwo, playerValueTwo, playerValueOne);
-          }
-        });
+        _onItemSelectedOffline(value);
       } else{//server
-        //TODO add user validation
-        dialogServerValidation();
+        _onItemSelectedOnline(value);
       }
 
     }

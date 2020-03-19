@@ -11,7 +11,7 @@ import 'package:roshambo/pages/game_online.dart';
 import 'package:roshambo/widgets/responsive_widget.dart';
 
 bool isMobile = false;
-
+var utils = Utils();
 class HomePage extends StatefulWidget {
 
   @override
@@ -33,13 +33,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
 
-    Widget _image(String name, double size){
-      return Image(image: AssetImage(name), width: size, height: size,);
-    }
-    Widget _icon(String name, double size){
-      return Image(image: AssetImage(name), width: size, height: size,);
-    }
-
     Widget mobileAction(double fontSize) {
       return Column(
         children: <Widget>[
@@ -54,8 +47,8 @@ class _HomePageState extends State<HomePage> {
         children: <Widget>[
           Padding(padding: EdgeInsets.all(4.0),),
           RaisedButton(child: Row(children: <Widget>[
-            _icon(Assets.storeGoogle, iconSize),
-            _icon(Assets.storeApple, iconSize)
+            utils.assetImage(Assets.storeGoogle, iconSize),
+            utils.assetImage(Assets.storeApple, iconSize)
           ],), onPressed: null,),
         ],
       );
@@ -93,16 +86,16 @@ class _HomePageState extends State<HomePage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        _image(Assets.choicePaper, imageSize),
+                        utils.assetImage(Assets.choicePaper, imageSize),
                         Row(
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
-                            _image(Assets.choiceRock, imageSize),
+                            utils.assetImage(Assets.choiceRock, imageSize),
                             buttonActions(iconSize, fontSize),
-                            _image(Assets.choiceScissors, imageSize),
+                            utils.assetImage(Assets.choiceScissors, imageSize),
                           ],
                         ),
-                        _image(Assets.choiceHands, imageSize),
+                        utils.assetImage(Assets.choiceHands, imageSize),
                       ],
                     ),),
                 ),

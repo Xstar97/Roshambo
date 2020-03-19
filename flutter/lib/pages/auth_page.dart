@@ -85,7 +85,9 @@ class AuthPageState extends State<AuthPage> {
   Widget signUpOrIn(double fontSize){
   return InkWell(
   onTap: ()=> signUpOrInState(),
-  child: Text(mode == FormMode.AUTH_LOGIN ? S.of(context).authAccountSignUp : S.of(context).authAccountSignIn, style: TextStyle(fontSize: fontSize),),
+  child: Padding(
+    padding: EdgeInsets.all(10),
+    child: Text(mode == FormMode.AUTH_LOGIN ? S.of(context).authAccountSignUp : S.of(context).authAccountSignIn, style: TextStyle(fontSize: fontSize),),),
   );
   }
 
